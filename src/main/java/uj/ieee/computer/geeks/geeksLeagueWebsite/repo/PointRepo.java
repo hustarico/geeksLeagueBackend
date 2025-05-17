@@ -23,8 +23,8 @@ public interface PointRepo extends JpaRepository<Point,PointId>{
     @Query("""
         SELECT new uj.ieee.computer.geeks.geeksLeagueWebsite.dto.LeaderBoardEntry(
         p.participant.id,
-        p.participant.firstName,
-        p.participant.lastName,
+        CONCAT(p.participant.firstName ,
+        p.participant.lastName),
         SUM(p.points)
     )
     FROM Point p
@@ -40,8 +40,8 @@ public interface PointRepo extends JpaRepository<Point,PointId>{
     @Query("""
         SELECT new uj.ieee.computer.geeks.geeksLeagueWebsite.dto.LeaderBoardEntry(
             p.participant.id,
-            p.participant.firstName,
-            p.participant.lastName,
+            CONCAT(p.participant.firstName ,
+            p.participant.lastName),
             p.points
         )
         FROM Point p
