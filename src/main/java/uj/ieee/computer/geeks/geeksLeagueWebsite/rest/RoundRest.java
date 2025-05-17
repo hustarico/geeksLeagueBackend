@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import uj.ieee.computer.geeks.geeksLeagueWebsite.dto.LeaderBoardEntry;
+import uj.ieee.computer.geeks.geeksLeagueWebsite.dto.RoundDTO;
 import uj.ieee.computer.geeks.geeksLeagueWebsite.entity.Round;
 import uj.ieee.computer.geeks.geeksLeagueWebsite.service.PointService;
 import uj.ieee.computer.geeks.geeksLeagueWebsite.service.RoundService;
@@ -39,25 +40,22 @@ public class RoundRest {
     public List<LeaderBoardEntry> getGlobalLeaderBoard() {
         return points.getTotalLeaderboard();
     }
-    @GetMapping("/leaderboard/{roundId}")
+    @GetMapping("/{roundId}/leaderboard")
     public List<LeaderBoardEntry> getLeaderboardByRound(@PathVariable Long roundId) {
         return points.getLeaderboardByRound(roundId);
     }
     
     @GetMapping("/all")
-    public List<Round> getAllRounds() {
+    public List<RoundDTO> getAllRounds() {
         return rounds.findAll();
     }
 
-    @GetMapping("/id/{id}")
-    public Round getRoundById(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public RoundDTO getRoundById(@PathVariable int id) {
         return rounds.findById(id);
     }
 
-    @GetMapping("/title/{title}")
-    public Round getRoundByTitle(@PathVariable String title) {
-        return rounds.findByTitle(title);
-    }
+    
     
     
 
