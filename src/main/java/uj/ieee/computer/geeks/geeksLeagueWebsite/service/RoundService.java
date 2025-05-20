@@ -31,7 +31,9 @@ public class RoundService{
 
         var now = LocalDate.now();
         if(round.getEndingDate().isBefore(now))return RoundStatus.FINISHED;
-        if(round.getStartingDate().isBefore(now) && round.getEndingDate().isAfter(now))return RoundStatus.ACTIVE;
+        // if(round.getStartingDate().isBefore(now) && round.getEndingDate().isAfter(now))return RoundStatus.ACTIVE;
+        if((round.getStartingDate().isBefore(now) || round.getStartingDate().isEqual(now)  )&& 
+            (round.getEndingDate().isAfter(now) || round.getEndingDate().isEqual(now)))return RoundStatus.ACTIVE;
         else
         return RoundStatus.UPCOMING;
 
